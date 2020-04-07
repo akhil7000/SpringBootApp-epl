@@ -14,4 +14,5 @@ public interface TeamRepository extends CrudRepository<Team,Integer> {
     @Query("from Team where ranking = (:ranking)")
     public Optional<Team> findByRanking(@Param("ranking") Integer ranking);
 
+    Optional<Team> findByTeamName(String name);
 }

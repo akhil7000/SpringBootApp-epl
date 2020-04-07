@@ -1,9 +1,12 @@
 package com.football.epl.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-
 import javax.persistence.*;
 
+/** This is Players Table which has a 1-1 relationship with PersonalInfo Table
+ *  and M-1 relationship with Team Table
+ **/
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,17 +30,19 @@ public class Players {
     @JoinColumn(name = "team_id")
     Team team;
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "player")
+    PersonalInfo personalInfo;
+
     @Column(name="player_name")
     String playerName;
     @Column(name="player_age")
     int playerAge;
 
-//    public Players(){}
-
-//    public Players(int teamId) {
-//        this.teamId=teamId;
-//
-//    }
+    public void setPlayerPersonalInfo(PersonalInfo personalInfo) {
+        this.personalInfo=personalInfo;
+        personalInfo.setPlayer(this);
+    }
 
 
 }

@@ -44,6 +44,15 @@ public class TeamController {
         return teamService.getTeamNameUsingId(id);
     }
 
+    @GetMapping("/getTeamNameUsingName/{name}")
+    @ApiOperation(value = "Retreives all the players from the db using {name}",
+            notes= "Team class is used as a model",
+            response = Team.class)
+    public Optional<Team> getTeamNameUsingName(@PathVariable String name){
+        return teamService.getTeamNameUsingName(name);
+    }
+
+
     @PostMapping("/addTeam")
     @ApiOperation(value = "Saves the team to the db",
             notes= "Team class is used as a model",
@@ -53,7 +62,7 @@ public class TeamController {
     }
 
     @DeleteMapping("/deleteTeam/{id}")
-    @ApiOperation(value = "Deletes the player from the db",
+    @ApiOperation(value = "Deletes the player from the db using {id}",
             notes= "Players class is used as a model")
     public void deleteTeam(@PathVariable int id){
         teamService.deleteTeam(id);

@@ -13,4 +13,6 @@ public interface ITeamService {
     Team setTeam(Team team);
 
     void deleteTeam(int id);
+
+    Optional<Team> getTeamNameUsingName(String name);
 }

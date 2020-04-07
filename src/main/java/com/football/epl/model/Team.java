@@ -2,11 +2,13 @@ package com.football.epl.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/** This is Team Table which has a 1-M relationship
+ *  with Players Table
+ **/
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,16 +27,8 @@ public class Team {
     @Column(name="team_name")
     String teamName;
 
-//    public Team(){}
-
-//    public Team(String teamName) {
-////        this.teamName=teamName;
-////
-////    }
-
     @Column(name="ranking")
     int teamRanking;
-
 
     public void setTeamPlayer(Players player) {
         playerSet=new HashSet<Players>();

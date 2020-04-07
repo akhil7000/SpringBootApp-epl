@@ -7,9 +7,11 @@ import java.util.Optional;
 
 public interface IPlayerService {
     String checkHealthPlayerService();
-    Iterable<Players> getPlayers();
-    Optional<Players> getPlayersUsingJerseyNo(int no);
+    Iterable<Players> getPlayers(int id);
+    Optional<Players> getPlayersUsingJerseyNo(int teamId,int no);
 
     Players setPlayer(Players player);
     void deletePlayer(int no);
+
+    Optional<Players> getPlayersUsingName(int teamId,String name);
 }

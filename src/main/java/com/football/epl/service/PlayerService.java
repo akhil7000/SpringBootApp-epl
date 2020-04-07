@@ -25,12 +25,12 @@ public class PlayerService implements IPlayerService {
     }
 
     @Override
-    public Iterable<Players> getPlayers() {
-        return playerRepository.findAll();
+    public Iterable<Players> getPlayers(int id) {
+        return playerRepository.findByTeamId(id);
     }
 
-    public Optional<Players> getPlayersUsingJerseyNo(int no) {
-        return playerRepository.findById(no);
+    public Optional<Players> getPlayersUsingJerseyNo(int teamId,int no) {
+        return playerRepository.findByJerseyNo(no).filter(player->player.getTeamId()==teamId);
     }
 
     @Override
@@ -44,5 +44,10 @@ public class PlayerService implements IPlayerService {
     @Override
     public void deletePlayer(int id) {
         playerRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Players> getPlayersUsingName(int teamId,String name) {
+        return playerRepository.findByPlayerName(name).filter(player->player.getTeamId()==teamId);
     }
 }

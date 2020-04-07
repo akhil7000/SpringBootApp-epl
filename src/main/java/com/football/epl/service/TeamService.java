@@ -43,4 +43,9 @@ public class TeamService implements ITeamService {
     public void deleteTeam(int id) {
         teamRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Team> getTeamNameUsingName(String name) {
+        return teamRepository.findByTeamName(name);
+    }
 }
